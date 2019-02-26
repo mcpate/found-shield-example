@@ -20,11 +20,13 @@
 package org.elasticsearch.cloud.transport.example;
 
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.core.config.Configurator;
 import org.elasticsearch.action.ActionFuture;
 import org.elasticsearch.action.admin.cluster.health.ClusterHealthResponse;
 import org.elasticsearch.client.Requests;
 import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.logging.ESLoggerFactory;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.xpack.client.PreBuiltXPackTransportClient;
@@ -37,13 +39,17 @@ import java.util.concurrent.TimeUnit;
 
 public class TransportExample {
 
-    public Logger logger = ESLoggerFactory.getLogger(getClass().getCanonicalName());
+    public Logger logger = LogManager.getLogger(getClass().getCanonicalName());
+
     // Note: If enabling IPv6, then you should ensure that your host and network can route it to the Cloud endpoint.
     // (eg Docker disables IPv6 routing by default) - see also the system property parsing code below.
     private boolean ip6Enabled = true;
     private boolean ip4Enabled = true;
 
     public static void main(String[] args)  {
+        Configurator.setLevel("org.elasticsearch.transport", Level.TRACE);
+        Configurator.setLevel("org.elasticsearch.transport.client", Level.TRACE);
+
         new TransportExample().run(args);
     }
 
