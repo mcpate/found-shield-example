@@ -39,6 +39,12 @@
             <groupId>org.elasticsearch.client</groupId>
             <artifactId>x-pack-transport</artifactId>
             <version>7.0.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.elasticsearch.plugin</groupId>
+                    <artifactId>transport-nio</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -55,7 +61,7 @@
           <!-- add the elastic repo -->
           <repository>
               <id>elastic</id>
-              <url>https://snapshots.elastic.co/7.0.0-a0ba97d2/maven</url>
+              <url>https://snapshots.elastic.co/7.0.0-554c232d/maven</url>
               <releases>
                   <enabled>true</enabled>
               </releases>
@@ -66,7 +72,7 @@
           <repository>
               <id>elastic-lucene-snapshots</id>
               <name>Elastic Lucene Snapshots</name>
-              <url>http://s3.amazonaws.com/download.elasticsearch.org/lucenesnapshots/83f9835</url>
+              <url>http://s3.amazonaws.com/download.elasticsearch.org/lucenesnapshots/ff9509a8df</url>
               <releases><enabled>true</enabled></releases>
               <snapshots><enabled>true</enabled></snapshots>
           </repository>
